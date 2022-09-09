@@ -1,6 +1,5 @@
 package com.faz.news3.di
 
-import com.faz.news3.data.local.datasource.NewsLocalDataSource
 import com.faz.news3.data.network.datasource.NewsRemoteDataSource
 import com.faz.news3.data.repo.NewsRepositoryImpl
 import com.faz.news3.domain.repository.NewsRepository
@@ -16,10 +15,10 @@ class RepositoryModule {
 
     @Provides
     fun provideNewsRepository(
-        remoteDataSource: NewsRemoteDataSource,
-        localDataSource: NewsLocalDataSource
+        remoteDataSource: NewsRemoteDataSource
+//        , localDataSource: NewsLocalDataSource
     ): NewsRepository = NewsRepositoryImpl(
-        remoteDataSource,
-        localDataSource
+        remoteDataSource
+//        , localDataSource
     )
 }

@@ -1,4 +1,3 @@
-<!-- res/layout/example_activity.xml -->
 <androidx.fragment.app.FragmentContainerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_container_view"

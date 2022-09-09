@@ -38,8 +38,8 @@ object NetworkModule {
             .build()
     }
 
-//    @Provides
-//    fun providesMoshi(): Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+    @Provides
+    fun providesMoshi(): Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
     @Provides
     @Singleton

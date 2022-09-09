@@ -1,14 +1,12 @@
 package com.faz.news3.ui.news
 
-import android.app.Activity
 import android.os.Bundle
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelStore
-import androidx.lifecycle.ViewModelStoreOwner
+import androidx.appcompat.app.AppCompatActivity
 import com.faz.news3.R
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : Activity() {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
