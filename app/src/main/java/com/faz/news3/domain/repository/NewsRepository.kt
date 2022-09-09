@@ -4,8 +4,6 @@ import com.faz.news3.domain.model.NewsArticle
 import kotlinx.coroutines.flow.Flow
 
 interface NewsRepository {
-
-    fun fetchNews(page: Int): Flow<List<NewsArticle>>
-
+    suspend fun fetchNews(page: Int, offline: Boolean): Flow<List<NewsArticle>>
     fun saveNews(news: List<NewsArticle>)
 }

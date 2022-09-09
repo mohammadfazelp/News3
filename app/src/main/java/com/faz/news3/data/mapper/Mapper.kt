@@ -1,5 +1,6 @@
 package com.faz.news3.data.mapper
 
+import com.faz.news3.data.local.entity.NewsEntity
 import com.faz.news3.data.model.NewsArticleApi
 import com.faz.news3.data.model.NewsSourceApi
 //import com.faz.news3.data.local.entity.NewsEntity
@@ -27,39 +28,40 @@ fun List<NewsArticleApi>.mapFromApiToPure(): List<NewsArticle> {
     return newsList
 }
 
-//fun List<NewsArticle>.mapFromPureToEntity(): List<NewsEntity> {
-//    val newsList = mutableListOf<NewsEntity>()
-//    forEach {
-//        newsList.add(
-//            NewsEntity(
-//                it.publishedAt,
-//                it.author,
-//                it.title,
-//                it.description,
-//                it.url,
-//                it.urlToImage,
-//                it.content
-//            )
-//        )
-//    }
-//    return newsList
-//}
-//
-//fun List<NewsEntity>.mapFromEntityToPure(): List<NewsArticle> {
-//    val newsList = mutableListOf<NewsArticle>()
-//    forEach {
-//        newsList.add(
-//            NewsArticle(
-//                it.publishedAt,
-//                it.author,
-//                null,
-//                it.title,
-//                it.description,
-//                it.url,
-//                it.urlToImage,
-//                it.content
-//            )
-//        )
-//    }
-//    return newsList
-//}
+fun List<NewsArticle>.mapFromPureToEntity(): List<NewsEntity> {
+    val newsList = mutableListOf<NewsEntity>()
+    forEach {
+        newsList.add(
+            NewsEntity(
+                null,
+                it.publishedAt,
+                it.author,
+                it.title,
+                it.description,
+                it.url,
+                it.urlToImage,
+                it.content
+            )
+        )
+    }
+    return newsList
+}
+
+fun List<NewsEntity>.mapFromEntityToPure(): List<NewsArticle> {
+    val newsList = mutableListOf<NewsArticle>()
+    forEach {
+        newsList.add(
+            NewsArticle(
+                it.publishedAt,
+                it.author,
+                null,
+                it.title,
+                it.description,
+                it.url,
+                it.urlToImage,
+                it.content
+            )
+        )
+    }
+    return newsList
+}

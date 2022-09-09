@@ -14,9 +14,9 @@ abstract class UseCase<T : UseCase.Request, R : UseCase.Response>(private val co
 
     interface Response
 
-    internal abstract fun process(request: T): Flow<R>
+    internal abstract suspend fun process(request: T): Flow<R>
 
-    fun execute(request: T) = process(request).map {
+   suspend  fun execute(request: T) = process(request).map {
         Result.Success(it) as Result<R>
     }.flowOn(config.dispatcher).catch {
         emit(Result.Error(UseCaseException.createFromThrowable(it)))

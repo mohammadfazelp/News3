@@ -1,6 +1,6 @@
 package com.faz.news3.ui.state
 
-import com.faz.domain.usecase.GetNewsUseCase
+import com.faz.news3.domain.usecase.GetNewsUseCase
 import com.faz.domain.usecase.Result
 import com.faz.news3.domain.model.NewsArticle
 import javax.inject.Inject

@@ -31,12 +31,18 @@ class NewsListFragment : Fragment(R.layout.fragment_news) {
         recyclerview = view.findViewById(R.id.recyclerview)
         emptyTextView = view.findViewById(R.id.emptyTextView)
         with(viewModel) {
-            loadNews(1)
+            loadNews(1, true)
             viewLifecycleOwner.lifecycleScope.launch {
                 newsFlow.collect { uiState ->
                     when (uiState) {
-                        is UiState.Success -> updateUi(uiState.data)
-                        is UiState.Error -> showError(uiState.errorMessage)
+                        is UiState.Success -> {
+                            if (uiState.data.isNotEmpty()) updateUi(uiState.data)
+                            else viewModel.loadNews(1, false)
+                        }
+                        is UiState.Error -> {
+                            showError(uiState.errorMessage)
+                            viewModel.loadNews(1, true)
+                        }
                         else -> {
                             Unit
                         }
@@ -51,8 +57,7 @@ class NewsListFragment : Fragment(R.layout.fragment_news) {
         emptyTextView.visibility = View.VISIBLE
         recyclerview.visibility = View.INVISIBLE
         progressBar.visibility = View.INVISIBLE
-
-        Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
+        // Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
     }
 
     private fun updateUi(news: List<NewsArticle>) {

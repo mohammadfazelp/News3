@@ -2,7 +2,7 @@ package com.faz.news3.ui.news
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.faz.domain.usecase.GetNewsUseCase
+import com.faz.news3.domain.usecase.GetNewsUseCase
 import com.faz.news3.domain.model.NewsArticle
 import com.faz.news3.ui.state.NewsConverter
 import com.faz.news3.ui.state.UiState
@@ -23,9 +23,9 @@ class NewsListViewModel @Inject constructor(
 
     val newsFlow: StateFlow<UiState<List<NewsArticle>>> = mutableNewsFlow
 
-    fun loadNews(page: Int) {
+    fun loadNews(page: Int, isOffline:Boolean) {
         viewModelScope.launch {
-            useCase.execute(GetNewsUseCase.Request(page)).map {
+            useCase.execute(GetNewsUseCase.Request(page,isOffline)).map {
                 converter.convert(it)
             }.collect {
                 mutableNewsFlow.value = it
