@@ -6,8 +6,9 @@ import com.faz.news3.data.local.dao.NewsDao
 import com.faz.news3.domain.model.NewsArticle
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class NewsLocalDataSourceImpl(private val newsDao: NewsDao) : NewsLocalDataSource {
+class NewsLocalDataSourceImpl @Inject constructor(private val newsDao: NewsDao) : NewsLocalDataSource {
     override fun fetchNews(page: Int): Flow<List<NewsArticle>> = newsDao.getAllNews(page).map {
         it.mapFromEntityToPure()
     }

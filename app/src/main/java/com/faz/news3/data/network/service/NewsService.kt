@@ -6,9 +6,15 @@ import retrofit2.http.Query
 
 interface NewsService {
 
-    @GET("top-headlines?sources=techcrunch&apiKey=3944e2d5c7e34015856ca6c1c86122fa")
+    @GET(NEWS_PATH)
     suspend fun fetchNewsList(
         @Query("limit") limit: Int = 20,
         @Query("offset") offset: Int = 0
     ): NewsResponseApi
+
+    companion object {
+        const val NEWS_PATH =
+            "top-headlines?sources=techcrunch&apiKey=3944e2d5c7e34015856ca6c1c86122fa"
+    }
 }
+

@@ -11,6 +11,6 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 abstract class RemoteDataSourceModule {
     @Binds
-    abstract fun bindNewsRemoteDataSource(nesRemoteDataSourceImpl: NewsRemoteDataSourceImpl):
+    abstract fun bindNewsRemoteDataSource(newsRemoteDataSourceImpl: NewsRemoteDataSourceImpl):
             NewsRemoteDataSource
 }

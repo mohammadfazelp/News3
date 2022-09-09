@@ -8,10 +8,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onEmpty
 
-class NewsRepositoryImpl /*@Inject*/ constructor(
+class NewsRepositoryImpl constructor(
     private val newsRemoteDataSource: NewsRemoteDataSource,
     private val newsLocalDataSource: NewsLocalDataSource
-//    , @Dispatcher(NewsDispatchers.IO) private val ioDispatcher: Dispatcher
 ) : NewsRepository {
 
     override fun fetchNews(page: Int): Flow<List<NewsArticle>> {
