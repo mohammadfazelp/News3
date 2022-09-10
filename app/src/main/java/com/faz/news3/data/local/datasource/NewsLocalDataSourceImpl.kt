@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class NewsLocalDataSourceImpl @Inject constructor(private val newsDao: NewsDao) : NewsLocalDataSource {
-    override fun fetchNews(page: Int): Flow<List<NewsArticle>> = newsDao.getAllNews().map {
+    override fun fetchNews(page: Int): Flow<List<NewsArticle>> = newsDao.fetchNews().map {
         it.mapFromEntityToPure()
     }
 
