@@ -3,6 +3,7 @@ package com.faz.news3.data.local.datasource
 import com.faz.news3.data.local.dao.NewsDao
 import com.faz.news3.data.local.entity.NewsEntity
 import com.faz.news3.data.mapper.mapFromEntityToPure
+import com.faz.news3.domain.model.NewsArticle
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
@@ -28,14 +29,15 @@ class NewsLocalDataSourceImplTest {
             )
         )
         val exceptedNews = listOf(
-            NewsEntity(
-                1, null, "Mohammad",
+            NewsArticle(
+                null, "Mohammad", null,
                 "My Title", "Description", null, "yahoo.com", null
             )
         )
 
         whenever(newsDao.fetchNews()).thenReturn(flowOf(localNews))
-        val result = newsLocalDataSource.fetchNews(page = 1).first()
+        val page = 1
+        val result = newsLocalDataSource.fetchNews(page).first()
         Assert.assertEquals(exceptedNews, result)
     }
 
@@ -50,12 +52,12 @@ class NewsLocalDataSourceImplTest {
         )
 
         val news = listOf(
-            NewsEntity(
-                1, null, "Mohammad",
+            NewsArticle(
+                null, "Mohammad", null,
                 "My Title", "Description", null, "yahoo.com", null
             )
         )
-        newsLocalDataSource.insertNews(news.mapFromEntityToPure())
+        newsLocalDataSource.insertNews(news)
         verify(newsDao).insertNews(localNews)
     }
 }

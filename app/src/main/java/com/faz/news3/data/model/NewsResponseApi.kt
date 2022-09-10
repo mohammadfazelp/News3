@@ -1,6 +1,5 @@
 package com.faz.news3.data.model
 
-import com.faz.news3.data.model.NewsArticleApi
 import com.squareup.moshi.Json
 
 data class NewsResponseApi(

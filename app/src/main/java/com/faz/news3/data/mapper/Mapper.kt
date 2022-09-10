@@ -47,6 +47,25 @@ fun List<NewsArticle>.mapFromPureToEntity(): List<NewsEntity> {
     return newsList
 }
 
+fun List<NewsArticle>.mapFromPureToApiModel(): List<NewsArticleApi> {
+    val newsList = mutableListOf<NewsArticleApi>()
+    forEach {
+        newsList.add(
+            NewsArticleApi(
+                it.publishedAt,
+                it.author,
+                null,
+                it.title,
+                it.description,
+                it.url,
+                it.urlToImage,
+                it.content
+            )
+        )
+    }
+    return newsList
+}
+
 fun List<NewsEntity>.mapFromEntityToPure(): List<NewsArticle> {
     val newsList = mutableListOf<NewsArticle>()
     forEach {
